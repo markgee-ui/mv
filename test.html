@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DOM & JavaScript — Friendly → Professional Playground</title>
+  <style>
+    :root{
+      --bg:#f7f9fb; --fg:#0b2545; --muted:#516B8A; --accent:#0ea5a1;
+      --card:#ffffff; --danger:#ef4444;
+    }
+    body{font-family:Inter, system-ui, Arial; margin:0; background:var(--bg); color:var(--fg);}
+    header{padding:18px 24px; display:flex; gap:12px; align-items:center; background:linear-gradient(90deg,#eef8f9,#ffffff); box-shadow:0 1px 0 rgba(0,0,0,.04)}
+    h1{font-size:18px;margin:0}
+    .container{max-width:980px;margin:24px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:1fr 380px;gap:18px}
+    .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(11,37,69,.04)}
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    button{cursor:pointer;padding:8px 12px;border-radius:8px;border:1px solid rgba(11,37,69,.06);background:#fff}
+    .muted{color:var(--muted);font-size:13px}
+    pre{background:#0b2545;color:#fff;padding:10px;border-radius:8px;overflow:auto;font-size:13px}
+    /* friendly vs professional themes for demo */
+    .theme-toggle{display:flex;gap:6px;align-items:center}
+    .tag{display:inline-block;padding:6px 8px;border-radius:999px;background:#eef2ff;color:#3730a3;font-weight:600;font-size:12px}
+    .list{padding:0;margin:0;list-style:none}
+    .list li{padding:8px 0;border-bottom:1px dashed #eef3f6}
+    input, textarea{padding:8px;border-radius:6px;border:1px solid #e6eef6;width:100%}
+    .success{color:green;font-weight:600}
+    .error{color:var(--danger);font-weight:600}
+    .small{font-size:13px;color:var(--muted)}
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DOM & JavaScript — Friendly → Professional</h1>
+    <div style="margin-left:auto" class="theme-toggle">
+      <span class="small">Theme:</span>
+      <button id="friendlyBtn" aria-pressed="true">Friendly</button>
+      <button id="professionalBtn">Professional</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <!-- LEFT: Tutorials & Interactive Demos -->
+      <div>
+        <!-- Friendly beginner demo -->
+        <section class="card" id="friendly">
+          <div class="section-title">
+            <div>
+              <strong>Friendly — DOM basics</strong>
+              <div class="small muted">Selectors, events, simple DOM updates</div>
+            </div>
+            <span class="tag">Beginner</span>
+          </div>
+
+          <p class="muted">Click buttons, see changes, inspect console messages.</p>
+
+          <div style="display:flex;gap:8px;margin-bottom:10px">
+            <button id="addItemBtn">Add Item</button>
+            <button id="clearListBtn">Clear List</button>
+            <button id="helloBtn">Say Hello</button>
+          </div>
+
+          <ul id="simpleList" class="list" aria-live="polite">
+            <!-- items will be appended here -->
+          </ul>
+
+          <hr style="margin:12px 0">
+
+          <div>
+            <strong>Simple element update</strong>
+            <div class="small muted">Change text and style via DOM</div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <input id="titleInput" placeholder="Type new title..." />
+              <button id="updateTitleBtn">Update</button>
+            </div>
+            <h3 id="demoTitle" style="margin-top:10px">Hello, friend!</h3>
+          </div>
+        </section>
+
+        <!-- Intermediate: events, delegation, forms -->
+        <section class="card" id="intermediate" style="margin-top:18px">
+          <div class="section-title">
+            <div>
+              <strong>Intermediate — Events & Forms</strong>
+              <div class="small muted">Event delegation, validating forms, accessibility</div>
+            </div>
+            <span class="tag">Intermediate</span>
+          </div>
+
+          <form id="contactForm" class="card" style="padding:12px;margin:0">
+            <label class="small">Name
+              <input name="name" required placeholder="Your name" />
+            </label>
+            <label class="small" style="display:block;margin-top:8px">Message
+              <textarea name="message" rows="3" required placeholder="Say something..."></textarea>
+            </label>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button type="submit">Send</button>
+              <button type="button" id="simulateSubmit">Simulate Submit</button>
+            </div>
+            <div id="formFeedback" class="small" style="margin-top:8px"></div>
+          </form>
+
+          <hr style="margin:12px 0">
+
+          <div>
+            <strong>Event delegation example</strong>
+            <div class="small muted">Click Delete (delegated handler)</div>
+            <ul id="delegatedList" class="list" style="margin-top:8px">
+              <li data-id="1">Alpha <button class="delBtn" data-id="1">Delete</button></li>
+              <li data-id="2">Bravo <button class="delBtn" data-id="2">Delete</button></li>
+              <li data-id="3">Charlie <button class="delBtn" data-id="3">Delete</button></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Professional: modules, async, error handling -->
+        <section class="card" id="professional" style="margin-top:18px">
+          <div class="section-title">
+            <div>
+              <strong>Professional — Patterns & Async</strong>
+              <div class="small muted">Module pattern, async/await, error handling, graceful UI</div>
+            </div>
+            <span class="tag">Pro</span>
+          </div>
+
+          <div>
+            <button id="loadDataBtn">Load Remote Data (mock)</button>
+            <div id="dataArea" style="margin-top:10px" class="small muted">No data loaded yet.</div>
+            <div style="margin-top:8px">
+              <button id="simulateErrorBtn">Simulate Error</button>
+            </div>
+          </div>
+
+          <hr style="margin:12px 0">
+
+          <div>
+            <strong>Console-friendly logs</strong>
+            <div class="small muted">Open DevTools → Console to see module outputs</div>
+            <pre id="consoleOut">/* logs appear here for demo */</pre>
+          </div>
+        </section>
+
+        <footer class="card" style="margin-top:18px">
+          <div class="small muted">Tip: open DevTools (F12) and watch the console while you interact — it's the best way to learn the DOM.</div>
+        </footer>
+      </div>
+
+      <!-- RIGHT: Quick reference & code snippets -->
+      <aside>
+        <div class="card">
+          <div class="section-title">
+            <strong>Quick Reference</strong>
+            <div class="small muted">DOM methods you’ll use a lot</div>
+          </div>
+          <ul>
+            <li><code>document.querySelector(selector)</code> — first element</li>
+            <li><code>document.querySelectorAll(selector)</code> — NodeList</li>
+            <li><code>el.addEventListener('click', fn)</code> — events</li>
+            <li><code>el.classList.add('is-active')</code> — toggle classes</li>
+            <li><code>el.dataset.key</code> — read data- attributes</li>
+            <li><code>fetch(url)</code> — network requests</li>
+            <li><code>document.createElement('div')</code> — create nodes</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="section-title">
+            <strong>Small cheatsheet</strong>
+            <div class="small muted">Best practices</div>
+          </div>
+          <ol>
+            <li>Prefer <code>addEventListener</code> over inline handlers.</li>
+            <li>Delegate events for many similar elements (performance).</li>
+            <li>Keep DOM updates minimal (batch changes).</li>
+            <li>Use <code>aria-*</code> & semantic tags for accessibility.</li>
+            <li>Handle network errors — always.</li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    // --------------------------
+    // Friendly: simple DOM ops
+    // --------------------------
+    const addItemBtn = document.getElementById('addItemBtn');
+    const clearListBtn = document.getElementById('clearListBtn');
+    const simpleList = document.getElementById('simpleList');
+    const helloBtn = document.getElementById('helloBtn');
+    const titleInput = document.getElementById('titleInput');
+    const updateTitleBtn = document.getElementById('updateTitleBtn');
+    const demoTitle = document.getElementById('demoTitle');
+
+    let counter = 0;
+
+    addItemBtn.addEventListener('click', () => {
+      counter++;
+      const li = document.createElement('li');
+      li.textContent = `Item ${counter}`;
+      li.setAttribute('data-item-id', counter);
+      // add small button
+      const mark = document.createElement('button');
+      mark.textContent = 'Mark';
+      mark.style.marginLeft = '8px';
+      mark.addEventListener('click', (e) => {
+        // e.stopPropagation(); // if needed
+        li.style.fontWeight = '700';
+        console.log('Marked', li.dataset.itemId);
+      });
+      li.appendChild(mark);
+      simpleList.appendChild(li);
+    });
+
+    clearListBtn.addEventListener('click', () => {
+      // friendly approach: clear innerHTML
+      simpleList.innerHTML = '';
+      counter = 0;
+    });
+
+    helloBtn.addEventListener('click', () => {
+      alert('Hello! This alert shows how events trigger UI changes.');
+    });
+
+    updateTitleBtn.addEventListener('click', () => {
+      // basic DOM update — read value, guard, update
+      const v = titleInput.value.trim();
+      demoTitle.textContent = v ? v : 'Hello, friend!';
+      titleInput.value = '';
+    });
+
+    // --------------------------
+    // Intermediate: forms & delegation
+    // --------------------------
+    const contactForm = document.getElementById('contactForm');
+    const formFeedback = document.getElementById('formFeedback');
+    const simulateSubmit = document.getElementById('simulateSubmit');
+
+    contactForm.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      const formData = new FormData(contactForm);
+      const name = formData.get('name').trim();
+      const message = formData.get('message').trim();
+      if (!name || !message) {
+        formFeedback.textContent = 'Please fill both fields';
+        formFeedback.className = 'error';
+        return;
+      }
+      formFeedback.textContent = 'Sending...';
+      formFeedback.className = '';
+      // simulate network send
+      setTimeout(() => {
+        formFeedback.textContent = 'Message sent — thanks ' + name + '!';
+        formFeedback.className = 'success';
+        contactForm.reset();
+      }, 800);
+    });
+
+    simulateSubmit.addEventListener('click', () => {
+      // demonstrates programmatically dispatching a submit
+      contactForm.querySelector('[name="name"]').value = 'Demo';
+      contactForm.querySelector('[name="message"]').value = 'A quick demo';
+      contactForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+    });
+
+    // Event delegation: single handler to manage delete buttons
+    const delegatedList = document.getElementById('delegatedList');
+    delegatedList.addEventListener('click', (e) => {
+      // find if a delete button was clicked
+      const btn = e.target.closest('button.delBtn');
+      if (!btn) return;
+      const li = btn.closest('li');
+      const id = li.dataset.id;
+      // remove the item
+      li.remove();
+      console.log('Deleted delegated item', id);
+    });
+
+    // --------------------------
+    // Professional: module pattern, async, error handling
+    // --------------------------
+    const Console = (function () {
+      // small module to keep logs visible in UI + console
+      const out = document.getElementById('consoleOut');
+      function log(...args) {
+        console.log(...args);
+        out.textContent += args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ') + '\n';
+        out.scrollTop = out.scrollHeight;
+      }
+      function clear() { out.textContent = ''; console.clear(); }
+      return { log, clear };
+    })();
+
+    // Mock "remote" fetch — since local file, we simulate network
+    async function fetchMock(shouldFail = false) {
+      // demonstrates async/await, error handling, and UI updates
+      await new Promise(r => setTimeout(r, 600)); // simulate latency
+      if (shouldFail) throw new Error('Network error (simulated)');
+      return [
+        { id: 1, title: 'Remote item 1' },
+        { id: 2, title: 'Remote item 2' },
+      ];
+    }
+
+    const loadDataBtn = document.getElementById('loadDataBtn');
+    const dataArea = document.getElementById('dataArea');
+    const simulateErrorBtn = document.getElementById('simulateErrorBtn');
+
+    loadDataBtn.addEventListener('click', async () => {
+      dataArea.textContent = 'Loading...';
+      try {
+        const data = await fetchMock(false); // put true to simulate error
+        // render minimal list
+        dataArea.innerHTML = '<ul>' + data.map(d => `<li>${d.title}</li>`).join('') + '</ul>';
+        Console.log('Data loaded', data);
+      } catch (err) {
+        Console.log('Error loading data', err);
+        dataArea.innerHTML = `<div class="error">Failed to load: ${err.message}</div>`;
+      }
+    });
+
+    simulateErrorBtn.addEventListener('click', async () => {
+      dataArea.textContent = 'Loading (will fail)...';
+      try {
+        await fetchMock(true);
+      } catch (err) {
+        Console.log('Simulated error:', err.message);
+        dataArea.innerHTML = `<div class="error">Simulated error: ${err.message}</div>`;
+      }
+    });
+
+    // --------------------------
+    // Theme toggle — friendly vs professional
+    // --------------------------
+    const friendlyBtn = document.getElementById('friendlyBtn');
+    const professionalBtn = document.getElementById('professionalBtn');
+
+    function setFriendly() {
+      document.documentElement.style.setProperty('--bg', '#f7f9fb');
+      document.documentElement.style.setProperty('--fg', '#0b2545');
+      document.documentElement.style.setProperty('--card', '#ffffff');
+      document.documentElement.style.setProperty('--accent', '#0ea5a1');
+      friendlyBtn.setAttribute('aria-pressed','true');
+      professionalBtn.setAttribute('aria-pressed','false');
+    }
+
+    function setProfessional() {
+      document.documentElement.style.setProperty('--bg', '#0f1724');
+      document.documentElement.style.setProperty('--fg', '#e6eef6');
+      document.documentElement.style.setProperty('--card', '#091226');
+      document.documentElement.style.setProperty('--accent', '#06b6d4');
+      friendlyBtn.setAttribute('aria-pressed','false');
+      professionalBtn.setAttribute('aria-pressed','true');
+    }
+
+    friendlyBtn.addEventListener('click', setFriendly);
+    professionalBtn.addEventListener('click', setProfessional);
+
+    // init
+    setFriendly();
+
+    // --------------------------
+    // Small accessibility / tips
+    // --------------------------
+    // 1) Use aria-live for dynamic lists to announce changes to screen readers.
+    // 2) Prefer buttons over clickable divs for keyboard accessibility.
+    // 3) Use proper labels and required attributes for forms.
+
+    // --------------------------
+    // Helpful debug route (open /test in console)
+    // --------------------------
+    window.__debug = {
+      clearConsoleUI: () => Console.clear(),
+      loadDataNow: () => loadDataBtn.click(),
+      simulateError: () => simulateErrorBtn.click()
+    };
+
+    Console.log('DOM Playground ready — try clicking buttons, submitting the form, and opening DevTools.');
+  </script>
+</body>
+</html>

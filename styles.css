@@ -1,0 +1,387 @@
+/* General Styles & Variables */
+:root {
+    --primary-color: #2c3e50; /* A dark, professional blue */
+    --secondary-color: #e74c3c; /* A vibrant, engaging red */
+    --accent-color: #f39c12; /* A warm orange for highlights */
+    --text-color: #ecf0f1; /* Light gray for readability */
+    --background-dark: #34495e; /* A slightly lighter blue-gray for sections */
+    --font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    overflow-x: hidden;
+}
+
+/* Header & Navigation */
+header {
+    background: rgba(44, 62, 80, 0.9);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Update the .logo class to work with the image */
+.logo {
+    display: flex; /* Ensures the image is correctly centered if needed */
+    align-items: center;
+}
+
+.logo img {
+    height: 40px; /* Adjust this value to your preferred logo size */
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.1); /* Adds a subtle hover effect */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul a:hover {
+    color: var(--secondary-color);
+}
+
+/* Company Introduction Section */
+#company-intro {
+    background-color: #34495e; /* A professional blue-gray */
+    color: #ecf0f1;
+    padding: 6rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    align-items: center;
+}
+
+.intro-text {
+    flex: 1 1 50%; /* Takes up 50% of the width, but can grow/shrink */
+    text-align: left;
+}
+
+.intro-text h1 {
+    font-size: 3rem;
+    color: #f39c12; /* Accent color for the heading */
+    margin-bottom: 1rem;
+}
+
+.intro-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.intro-image {
+    flex: 1 1 40%; /* Image takes a slightly smaller portion */
+    text-align: center;
+}
+
+.intro-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Photographer Bio Section (reusing the original hero styles) */
+#photographer-bio {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('images/gg.jpg') no-repeat center center/cover;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+#photographer-bio::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Add any other hero-content styles here for consistency */
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.cta-button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+/* The rest of the CSS for the site from the original response would go here */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .intro-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .intro-text {
+        text-align: center;
+    }
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+
+
+/* General Section Styles */
+section {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: var(--background-dark);
+}
+
+section:nth-of-type(even) {
+    background-color: var(--primary-color);
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--accent-color);
+}
+
+/* Portfolio Section */
+.categories {
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    background: var(--background-dark);
+    color: var(--text-color);
+    border: 2px solid var(--text-color);
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+.filter-btn:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: white;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1);
+}
+
+.portfolio-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.portfolio-item:hover .overlay {
+    opacity: 1;
+}
+
+.portfolio-item .overlay p {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Contact Section */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.contact-form input,
+.contact-form textarea {
+    background: var(--primary-color);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.contact-form button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.contact-form button:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--background-dark);
+}
+
+.contact-info {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.contact-info p {
+    margin: 0.5rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        margin-top: 1rem;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 0.5rem;
+    }
+
+    #hero h1 {
+        font-size: 3rem;
+    }
+}
